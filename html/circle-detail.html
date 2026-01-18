@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle - MindBridge</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="logo">MindBridge</a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                <span>Dashboard</span>
+            </a>
+            <a href="circles.html" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span>Circles</span>
+            </a>
+            <!-- <a href="mood-log.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                </svg>
+                <span>Mood Log</span>
+            </a> -->
+            <a href="journal.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 20h9"></path>
+                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+                <span>Journal</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Profile</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Circle Header -->
+         
+
+        <div class="circle-detail-header blue-gradient">
+            <div class="circle-detail-info">
+                <div class="circle-avatar-large" id="circleAvatar"></div>
+                <div>
+                    <h1 class="circle-detail-title" id="circleTitle"></h1>
+                    <p class="circle-detail-description" id="circleDescription"></p>
+                    <div class="circle-detail-meta">
+                        <span class="meta-item" id="circleTags"></span>
+                    </div>
+                    <br>
+                    <div class="circle-detail-meta">
+                        <span class="meta-item">•</span>
+                        <span class="meta-item" id="circleVisibility"></span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-primary" id="createPostBtn">Create Post</button>
+        </div>
+
+    
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" class="post-card hidden" >
+  <h3>Admin Controls</h3>
+  <br>
+ <div class="form-group">
+    <h4 id="">Circle Title</h4>
+    <input id="editTitle" placeholder="Edit title" class="form-input" />
+    <h4 id="">Circle Description</h4>
+  <textarea id="editDescription" placeholder="Edit description" class="form-input"></textarea>
+
+  <button type="button" id="updateCircleBtn" class="btn-primary">Update Circle</button>
+<hr>
+
+  <h4 id="joinRe">Join Requests</h4>
+  <div id="requestList"></div>
+</div>
+ </div>
+  
+
+        <!-- Circle Navigation -->
+        <!-- <div class="circle-nav"> -->
+            
+            <button class="circle-nav-btn active" id="posts">Posts</button>
+            <a href="#membersList"><button class="circle-nav-btn" id="members">Members</button></a>
+            <!-- <button class="circle-nav-btn">Members</button>
+            <button class="circle-nav-btn">About</button> -->
+        <!-- </div> -->
+<hr>
+<br>
+<!-- create post -->
+<div class="post-card hidden" id="postList">
+                <div class="post-header">
+                    <div class="post-avatar"></div>
+                    <div class="post-info">
+                        <h4 class="post-author" id="postAuthor"></h4>
+                        <p class="post-meta"></p>
+                    </div>
+                    <button class="post-menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <circle cx="12" cy="5" r="1"></circle>
+                            <circle cx="12" cy="19" r="1"></circle>
+                        </svg>
+                    </button>
+                </div>
+                 <div class="form-group">
+                    <h4><label for="postTitle">Post Title</label></h4>
+                <input type="text" id="postTitle" class="form-input" placeholder="e.g. Mindfulness Daily"
+                            required />
+
+                 </div>
+                 <br>
+                 <div class="form-group">
+                    <h4><label for="postBody">Post Body</label></h4>
+                        <textarea id="postBody" class="form-textarea" class="post-content rows="4"
+                            placeholder="Describe what you want to say.." required></textarea>
+                 </div>
+                <br>
+                    <button class="btn-outline" id="submitPost">Post</button>
+                </div>
+            </div>
+<BR>
+
+
+        <!-- Circle Feed -->
+       <!-- <div class="circle-feed" >
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-avatar"></div>
+                    <div class="post-info">
+                        <h4 class="post-author"></h4>
+                        <p class="post-meta"></p>
+                    </div>
+                    <button class="post-menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <circle cx="12" cy="5" r="1"></circle>
+                            <circle cx="12" cy="19" r="1"></circle>
+                        </svg>
+                    </button>
+                </div>
+                <h3 class="post-title" id=></h3>
+                <p class="post-content" id=></p>
+                <div class="post-footer">
+                    <button class="post-action">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg> -->
+                        <!-- <span>24 likes</span>
+                    </button>
+                    <button class="post-action">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg> -->
+                        <!-- <span>8 comments</span> -->
+                    <!-- </button>
+                    <button class="post-action">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                            <polyline points="16 6 12 2 8 6"></polyline>
+                            <line x1="12" y1="2" x2="12" y2="15"></line>
+                        </svg>
+                        <span>Share</span>
+                    </button>
+                </div>
+            </div> -->
+
+            <!-- <div class="post-card"> -->
+                <!-- <div class="post-header">
+                    <div class="post-avatar">SA</div>
+                    <div class="post-info">
+                        <h4 class="post-author">Sarah Anderson</h4>
+                        <p class="post-meta">5 hours ago</p>
+                    </div>
+                    <button class="post-menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <circle cx="12" cy="5" r="1"></circle>
+                            <circle cx="12" cy="19" r="1"></circle>
+                        </svg>
+                    </button>
+                </div> -->
+                <!-- <h3 class="post-title">Breathing techniques that changed my anxiety</h3>
+                <p class="post-content">After practicing the 4-7-8 breathing technique for two weeks, I've noticed significant improvements in managing my anxiety. Here's how I incorporate it into my daily routine...</p>
+                <div class="post-footer">
+                    <button class="post-action">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                        <span>56 likes</span>
+                    </button>
+                    <button class="post-action">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>23 comments</span>
+                    </button>
+                    <button class="post-action"> -->
+                        <!-- <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                            <polyline points="16 6 12 2 8 6"></polyline>
+                            <line x1="12" y1="2" x2="12" y2="15"></line>
+                        </svg>
+                        <span>Share</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-avatar">TM</div>
+                    <div class="post-info">
+                        <h4 class="post-author">Tom Miller</h4>
+                        <p class="post-meta">Yesterday</p>
+                    </div>
+                    <button class="post-menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <circle cx="12" cy="5" r="1"></circle>
+                            <circle cx="12" cy="19" r="1"></circle>
+                        </svg>
+                    </button>
+                </div>
+                <h3 class="post-title">Weekly mindfulness challenge starting Monday!</h3>
+                <p class="post-content">Hey everyone! Starting a 7-day mindfulness challenge next week. Each day we'll focus on a different aspect of mindfulness. Who's in?</p>
+                <div class="post-footer">
+                    <button class="post-action">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                        <span>89 likes</span>
+                    </button>
+                    <button class="post-action">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path> -->
+                        <!-- </svg>
+                        <span>34 comments</span>
+                    </button>
+                    <button class="post-action">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                            <polyline points="16 6 12 2 8 6"></polyline>
+                            <line x1="12" y1="2" x2="12" y2="15"></line>
+                        </svg> 
+                        <span>Share</span>
+                    </button>
+                </div>
+            </div>
+        </div> -->
+        <div id="membersList" class="hidden"></div>
+    </main>
+    <script type="module" src="../js/circle-detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="nav-logo border">
+                <h2>MindBridge</h2>
+            </div>
+
+            <div class="nav-return border">
+                <a href="/html/index.html">Home</a>
+            </div>
+
+            <div class="nav-signin border">
+                <a href="/html/index.html#feature-section">Features</a>
+            </div>
+
+            <div class="nav-cart border">
+                <a href="/html/circles.html">Circles</a>
+            </div>
+
+        </div>
+    
+    </header>
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <div class="auth-content">
+                    <div class="auth-header">
+                        <h1 class="auth-title">Welcome to MindBridge</h1>
+                        <p class="auth-subtitle">Begin your journey to well-being and connection</p>
+                    </div>
+
+                    <!-- Login Form -->
+                    <div class="auth-form-container" id="login-form">
+                        <form class="auth-form">
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" class="form-input" placeholder="your@gmail.com"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="login-password" class="form-label">Password</label>
+                                <input type="password" id="login-password" class="form-input" placeholder="••••••••"
+                                    required>
+                            </div>
+                            <div class="form-footer">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" class="form-checkbox">
+                                    <span id="remember-me">Remember me</span>
+                                </label>
+                                <!-- <a href="#" class="link-text">Forgot password?</a> -->
+                            </div>
+                            <button type="submit" class="signin" id="signin-user">Sign In</button>
+                        </form>
+                        <div class="auth-switch">
+                            <p>Don't have an account? <a href="#" class="link-text" onclick="showSignup()">Sign up</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Signup Form -->
+                    <div class="auth-form-container hidden" id="signup-form">
+                        <form class="auth-form">
+                            <div class="form-group">
+                                <label for="signup-name" class="form-label">Display Name</label>
+                                <input type="text" id="signup-name" class="form-input" placeholder="Your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-email" class="form-label">Email</label>
+                                <input type="email" id="signup-email" class="form-input" placeholder="your@email.com"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-password" class="form-label">Password</label>
+                                <input type="password" id="signup-password" class="form-input" placeholder="••••••••"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-confirm" class="form-label">Confirm Password</label>
+                                <input type="password" id="signup-confirm" class="form-input" placeholder="••••••••"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" class="form-checkbox" id="terms" required>
+                                    <span>I agree to the Terms of Service and Privacy Policy</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn-primary btn-full" id="create-account">Create Account</button>
+                        </form>
+                        <div class="auth-switch">
+                            <p>Already have an account? <a href="#" class="link-text" onclick="showLogin()">Sign in</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="auth-visual">
+                    <div class="visual-content">
+                        <h2 class="visual-title">Join a Community That Cares</h2>
+                        <div class="visual-features">
+                            <div class="visual-feature">
+                                <div class="visual-icon blue-bg">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4>Safe & Private</h4>
+                                    <p>Your data is secure with complete privacy control</p>
+                                </div>
+                            </div>
+                            <div class="visual-feature">
+                                <div class="visual-icon mint-bg">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4>Supportive Communities</h4>
+                                    <p>Connect with circles that understand your journey</p>
+                                </div>
+                            </div>
+                            <div class="visual-feature">
+                                <div class="visual-icon lavender-bg">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4>Track Your Well-Being</h4>
+                                    <p>Daily mood logs and reflective journaling</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="../js/login.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

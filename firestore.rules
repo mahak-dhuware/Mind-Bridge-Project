@@ -1,0 +1,65 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // USERS
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // CIRCLES
+    match /circles/{circleId} {
+    
+      allow read, write: if request.auth != null;
+
+      allow create: if request.auth != null;
+
+      allow update, delete: if request.auth != null &&
+        (
+          resource.data.members[request.auth.uid] == "admin"
+        );
+        // Anyone logged in can read circle metadata
+      allow read: if request.auth != null &&
+      (resource.data.visibility == "public" ||
+      resource.data.members[request.auth.uid] != null);
+      
+
+      // Create
+      allow create: if request.auth != null;
+
+      // Update only if member/admin
+      allow update: if
+        request.auth != null &&
+        resource.data.members[request.auth.uid] == "admin";
+        //admin only
+        allow read: if request.auth != null;
+  allow update, delete: if request.auth.uid ==
+    resource.data.createdBy;
+    }
+
+   //notification
+   match /notifications/{id} {
+      allow read: if request.auth != null
+                  && request.auth.uid == resource.data.toUserId;
+      allow update: if request.auth != null
+                    && request.auth.uid == resource.data.toUserId;
+      allow create: if request.auth != null;
+    }
+    //post and comment
+    match /posts/{id} {
+  allow read: if request.auth != null;
+  allow create: if request.auth != null;
+  allow delete: if request.auth.uid == resource.data.createdBy;
+}
+
+match /comments/{id} {
+  allow read: if request.auth != null;
+  allow create: if request.auth != null;
+  allow delete: if request.auth.uid == resource.data.createdBy;
+}
+
+    }
+  }
+
+
+

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Circles - MindBridge</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="logo">MindBridge</a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                <span>Dashboard</span>
+            </a>
+            <a href="circles.html" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span>Circles</span>
+            </a>
+            <!-- <a href="mood-log.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                </svg>
+                <span>Mood Log</span>
+            </a> -->
+            <a href="journal.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 20h9"></path>
+                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+                <span>Journal</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Profile</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="page-header">
+            <div>
+                <h1 class="page-title">Discover Circles</h1>
+                <p class="page-subtitle">Find communities that match your interests</p>
+            </div>
+            <button class="btn-primary" id="createCircleBtn">Create Circle</button>
+        </header>
+
+        <!-- Search & Filters -->
+        <div class="search-section">
+            <div class="search-bar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" placeholder="Search circles by name or interests..." class="search-input">
+            </div>
+            <div class="filter-tags">
+                <button class="tag-btn active">All</button>
+                <button class="tag-btn">Anxiety</button>
+                <button class="tag-btn">Mindfulness</button>
+                <button class="tag-btn">Productivity</button>
+                <button class="tag-btn">Self-Care</button>
+                <button class="tag-btn">Relationships</button>
+                <button class="tag-btn">Career</button>
+            </div>
+        </div>
+        <section class="create-circle hidden">
+
+            <!-- Header -->
+            <div>
+                <h2>Create a New Circle</h2>
+                <!-- <small>Build a safe space around shared interests</small> -->
+            </div>
+            <br>
+            <!-- Form Card -->
+            <div class="card form-card">
+
+                <form id="createCircleForm">
+
+                    <!-- Circle Title -->
+                    <div class="form-group">
+                        <h4><label for="circleTitle">Circle Title</label></h4>
+                        <input type="text" id="circleTitle" class="form-input" placeholder="e.g. Mindfulness Daily"
+                            required />
+                    </div>
+                    <br>
+                    <!-- Description -->
+                    <div class="form-group">
+                        <h4><label for="circleDescription">Description</label></h4>
+                        <textarea id="circleDescription" class="form-textarea" rows="4"
+                            placeholder="Describe what this circle is about..." required></textarea>
+                    </div>
+                    <br>
+                    <!-- Tags -->
+                    <div class="form-group">
+                        <h4><label for="circleTags">Tags</label></h4>
+                        <input type="text" id="circleTags" class="form-input"
+                            placeholder="mindfulness, meditation, calm" />
+                        <small>Separate tags with commas</small>
+                    </div>
+                    <br>
+                    <!-- Visibility -->
+                    <div class="form-group">
+                        <h4><label for="" >Visibility</label></h4>
+
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="visibility" value="public" checked />
+                                <div>
+                                    <p class="setting-title">Public</p>
+                                    <small>Anyone can join instantly</small>
+                                </div>
+                            </label>
+
+                            <label class="radio-card" id="private">
+                                <input type="radio" name="visibility" value="private" />
+                                <div>
+                                    <p class="setting-title">Private</p>
+                                    <small>Users must request access</small>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+
+                    <!-- Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-primary" id="createBtn" >
+                            Create Circle
+                        </button>
+
+                        <button class="btn-primary btn-destructive" id="closecreatecircle" type="button">
+                            Cancel</button>
+
+
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+
+        <!-- My Circles -->
+        <section class="section"  >
+            <h2 class="section-title-sm">My Circles</h2><br>
+            
+            <p class="page-subtitle hidden" id="nocircle">No circle created yet</p>
+            <div class="circles-grid" id="myCircles">
+                <div class="circle-card">
+                    <!-- <div class="circle-header blue-gradient">
+                        <div class="circle-avatar">MD</div>
+                        <span class="badge-circle">Member</span>
+                    </div>
+                    <div class="circle-content">
+                        <h3 class="circle-title">Mindfulness Daily</h3>
+                        <p class="circle-description">Practice mindfulness and meditation together</p>
+                        <div class="circle-tags">
+                            <span class="tag">mindfulness</span>
+                            <span class="tag">meditation</span>
+                        </div>
+                        <div class="circle-meta">
+                            <span class="meta-item">856 members</span>
+                            <span class="meta-item">12 posts today</span>
+                        </div>
+                        <a href="circle-detail.html" class="btn-primary btn-small">View Circle</a>
+                    </div>
+                </div>
+                <div class="circle-card">
+                    <div class="circle-header mint-gradient">
+                        <div class="circle-avatar">PG</div>
+                        <span class="badge-circle admin">Admin</span>
+                    </div>
+                    <div class="circle-content">
+                        <h3 class="circle-title">Productivity & Growth</h3>
+                        <p class="circle-description">Building better habits and achieving goals</p>
+                        <div class="circle-tags">
+                            <span class="tag">productivity</span>
+                            <span class="tag">goals</span>
+                        </div>
+                        <div class="circle-meta">
+                            <span class="meta-item">2.1k members</span>
+                            <span class="meta-item">28 posts today</span>
+                        </div>
+                        <a href="circle-detail.html" class="btn-primary btn-small">View Circle</a>
+                    </div>
+                </div>
+                <div class="circle-card">
+                    <div class="circle-header lavender-gradient circleId">
+                        <div class="circle-avatar">SC</div>
+                        <span class="badge-circle">Member</span>
+                    </div>
+                    <div class="circle-content">
+                        <h3 class="circle-title">Self-Care Space</h3>
+                        <p class="circle-description">Prioritizing mental and physical well-being</p>
+                        <div class="circle-tags">
+                            <span class="tag">self-care</span>
+                            <span class="tag">wellness</span>
+                        </div>
+                        <div class="circle-meta">
+                            <span class="meta-item">1.4k members</span>
+                            <span class="meta-item">8 posts today</span>
+                        </div>
+                        <a href="circle-detail.html" class="btn-primary btn-small">View Circle</a>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommended Circles -->
+        <section class="section" id="discoverCircles">
+            <h2 class="section-title-sm">Recommended for You</h2>
+            <div class="circles-grid" id="recommendedCircles">
+                <div class="circle-card">
+                    <div class="circle-header peach-gradient">
+                        <div class="circle-avatar">AM</div>
+                    </div>
+                    <div class="circle-content">
+                        <h3 class="circle-title">Anxiety Management</h3>
+                        <p class="circle-description">Support group for managing anxiety and stress</p>
+                        <div class="circle-tags">
+                            <span class="tag">anxiety</span>
+                            <span class="tag">support</span>
+                        </div>
+                        <div class="circle-meta">
+                            <span class="meta-item">1.2k members</span>
+                            <span class="badge-small">Public</span>
+                        </div>
+                        <button class="btn-outline btn-small">Join Circle</button>
+                        <a href="circle-detail.html" class="btn-primary btn-small">View Circle</a>
+                    </div>
+                </div>
+                <div class="circle-card">
+                    <div class="circle-header rose-gradient">
+                        <div class="circle-avatar">RC</div>
+                    </div>
+                    <div class="circle-content">
+                        <h3 class="circle-title">Relationship Circle</h3>
+                        <p class="circle-description">Navigate relationships and build connections</p>
+                        <div class="circle-tags">
+                            <span class="tag">relationships</span>
+                            <span class="tag">communication</span>
+                        </div>
+                        <div class="circle-meta">
+                            <span class="meta-item">945 members</span>
+                            <span class="badge-small">Public</span>
+                        </div>
+                        <button class="btn-outline btn-small">Join Circle</button>
+                    </div>
+                </div>
+                <div class="circle-card">
+                    <div class="circle-header purple-gradient">
+                        <div class="circle-avatar">CG</div>
+                    </div>
+                    <div class="circle-content">
+                        <h3 class="circle-title">Career Growth</h3>
+                        <p class="circle-description">Professional development and career advice</p>
+                        <div class="circle-tags">
+                            <span class="tag">career</span>
+                            <span class="tag">growth</span>
+                        </div>
+                        <div class="circle-meta">
+                            <span class="meta-item">1.8k members</span>
+                            <span class="badge-small">Public</span>
+                        </div>
+                        <button class="btn-outline btn-small">Join Circle</button>
+                    </div>
+                </div>
+                <div class="circle-card">
+                    <div class="circle-header blue-gradient">
+                        <div class="circle-avatar">NS</div>
+                    </div>
+                    <div class="circle-content">
+                        <h3 class="circle-title">Night Shifters</h3>
+                        <p class="circle-description">Support for those working non-traditional hours</p>
+                        <div class="circle-tags">
+                            <span class="tag">support</span>
+                            <span class="tag">lifestyle</span>
+                        </div>
+                        <div class="circle-meta">
+                            <span class="meta-item">623 members</span>
+                            <span class="badge-small">Public</span>
+                        </div>
+                        <button class="btn-outline btn-small">Join Circle</button>
+                    </div>
+                </div>
+                <div class="circle-card">
+                    <div class="circle-header mint-gradient">
+                        <div class="circle-avatar">FC</div>
+                    </div>
+                    <div class="circle-content">
+                        <h3 class="circle-title">Fitness & Clarity</h3>
+                        <p class="circle-description">Mental and physical wellness through movement</p>
+                        <div class="circle-tags">
+                            <span class="tag">fitness</span>
+                            <span class="tag">wellness</span>
+                        </div>
+                        <div class="circle-meta">
+                            <span class="meta-item">1.5k members</span>
+                            <span class="badge-small">Public</span>
+                        </div>
+                        <button class="btn-outline btn-small">Join Circle</button>
+                    </div>
+                </div>
+                <div class="circle-card">
+                    <div class="circle-header lavender-gradient">
+                        <div class="circle-avatar">PC</div>
+                    </div>
+                    <div class="circle-content">
+                        <h3 class="circle-title">Parent Connect</h3>
+                        <p class="circle-description">Support and advice for parents at all stages</p>
+                        <div class="circle-tags">
+                            <span class="tag">parenting</span>
+                            <span class="tag">support</span>
+                        </div>
+                        <div class="circle-meta">
+                            <span class="meta-item">2.3k members</span>
+                            <span class="badge-small private">Private</span>
+                        </div>
+                        <button class="btn-outline btn-small">Request Join</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- notification -->
+         <section class="section">
+            <h2 class="section-title-sm">Notifications</h2>
+            <div id="notificationList" class="notification-box"></div>
+         </section>
+    </main>
+    <script type="module" src="../js/circle.js"></script>
+    <script type="module" src="../js/firebase.js"></script>
+    <script type="module" src="../js/notification.js"></script>
+</body>
+
+</html>
