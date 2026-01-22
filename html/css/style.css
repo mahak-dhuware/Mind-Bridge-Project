@@ -549,7 +549,7 @@ body {
 /* ===========================
    Responsive Design
    =========================== */
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
     .hero-title {
         font-size: 2.5rem;
     }
@@ -584,7 +584,7 @@ body {
     .nav-links {
         display: none;
     }
-} */
+}
 /* ===========================
    Auth Pages
    =========================== */
