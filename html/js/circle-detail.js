@@ -436,11 +436,11 @@ window.removeMember = async (circleId, memberUid) => {
     alert("Failed to remove member");
   }
 };
-await addDoc(collection(fs, "notifications"), {
-  toUserId: memberUid,
-  type: "removed",
-  message: `You were removed from the circle`,
-  circleId,
-  createdAt: serverTimestamp(),
-  read: false
-});
+// await addDoc(collection(fs, "notifications"), {
+//   toUserId: memberUid,
+//   type: "removed",
+//   message: `You were removed from the circle`,
+//   circleId,
+//   createdAt: serverTimestamp(),
+//   read: false
+// });

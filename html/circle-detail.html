@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,11 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body class="app-layout">
     <!-- Sidebar -->
     <aside class="sidebar">
@@ -73,7 +77,7 @@
     <!-- Main Content -->
     <main class="main-content">
         <!-- Circle Header -->
-         
+
 
         <div class="circle-detail-header blue-gradient">
             <div class="circle-detail-info">
@@ -94,74 +98,76 @@
             <button class="btn-primary" id="createPostBtn">Create Post</button>
         </div>
 
-    
 
-<!-- ADMIN PANEL -->
-<div id="adminPanel" class="post-card hidden" >
-  <h3>Admin Controls</h3>
-  <br>
- <div class="form-group">
-    <h4 id="">Circle Title</h4>
-    <input id="editTitle" placeholder="Edit title" class="form-input" />
-    <h4 id="">Circle Description</h4>
-  <textarea id="editDescription" placeholder="Edit description" class="form-input"></textarea>
 
-  <button type="button" id="updateCircleBtn" class="btn-primary">Update Circle</button>
-<hr>
+        <!-- ADMIN PANEL -->
+        <div id="adminPanel" class="post-card hidden">
+            <h3>Admin Controls</h3>
+            <br>
+            <div class="form-group">
+                <h4 id="">Circle Title</h4>
+                <input id="editTitle" placeholder="Edit title" class="form-input" />
+                <h4 id="">Circle Description</h4>
+                <textarea id="editDescription" placeholder="Edit description" class="form-input"></textarea>
 
-  <h4 id="joinRe">Join Requests</h4>
-  <div id="requestList"></div>
-</div>
- </div>
-  
+                <button type="button" id="updateCircleBtn" class="btn-primary">Update Circle</button>
+                <hr>
+
+                <h4 id="joinRe">Join Requests</h4>
+                <div id="requestList"></div>
+            </div>
+        </div>
+
 
         <!-- Circle Navigation -->
         <!-- <div class="circle-nav"> -->
-            
-            <button class="circle-nav-btn active" id="posts">Posts</button>
-            <a href="#membersList"><button class="circle-nav-btn" id="members">Members</button></a>
-            <!-- <button class="circle-nav-btn">Members</button>
+
+        <button class="circle-nav-btn active" id="posts">Posts</button>
+        <a href="#membersList"><button class="circle-nav-btn" id="members">Members</button></a>
+        <!-- <button class="circle-nav-btn">Members</button>
             <button class="circle-nav-btn">About</button> -->
         <!-- </div> -->
-<hr>
-<br>
-<!-- create post -->
-<div class="post-card hidden" id="postList">
-                <div class="post-header">
-                    <div class="post-avatar"></div>
-                    <div class="post-info">
-                        <h4 class="post-author" id="postAuthor"></h4>
-                        <p class="post-meta"></p>
-                    </div>
-                    <button class="post-menu">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="1"></circle>
-                            <circle cx="12" cy="5" r="1"></circle>
-                            <circle cx="12" cy="19" r="1"></circle>
-                        </svg>
-                    </button>
+        <hr>
+        <br>
+        <!-- create post -->
+        <div class="post-card" id="postList">
+            
+            <div class="post-header">
+                <div class="post-avatar"></div>
+                <div class="post-info">
+                    <h4 class="post-author" id="postAuthor"></h4>
+                    <p class="post-meta"></p>
                 </div>
-                 <div class="form-group">
-                    <h4><label for="postTitle">Post Title</label></h4>
-                <input type="text" id="postTitle" class="form-input" placeholder="e.g. Mindfulness Daily"
-                            required />
-
-                 </div>
-                 <br>
-                 <div class="form-group">
-                    <h4><label for="postBody">Post Body</label></h4>
-                        <textarea id="postBody" class="form-textarea" class="post-content rows="4"
-                            placeholder="Describe what you want to say.." required></textarea>
-                 </div>
-                <br>
-                    <button class="btn-outline" id="submitPost">Post</button>
-                </div>
+                <button class="post-menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="12" cy="5" r="1"></circle>
+                        <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                </button>
             </div>
-<BR>
+            <div class="form-group">
+                <h4><label for="postTitle">Post Title</label></h4>
+                <input type="text" id="postTitle" class="form-input" placeholder="e.g. Mindfulness Daily" required />
+
+            </div>
+            <br>
+            <div class="form-group">
+                <h4><label for="postBody">Post Body</label></h4>
+                <textarea id="postBody" class="form-textarea" class="post-content rows=" 4"
+                    placeholder="Describe what you want to say.." required></textarea>
+            </div>
+            <br>
+            <button class="btn-outline" id="submitPost">Post</button>
+        </div>
+        
+
+
+        <BR>
 
 
         <!-- Circle Feed -->
-       <!-- <div class="circle-feed" >
+        <!-- <div class="circle-feed" >
             <div class="post-card">
                 <div class="post-header">
                     <div class="post-avatar"></div>
@@ -184,15 +190,15 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                         </svg> -->
-                        <!-- <span>24 likes</span>
+        <!-- <span>24 likes</span>
                     </button>
                     <button class="post-action">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                         </svg> -->
-                        <!-- <span>8 comments</span> -->
-                    <!-- </button>
-                    <button class="post-action">
+        <!-- <span>8 comments</span> -->
+        <!-- </button>
+                    <!-- <button class="post-action">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
                             <polyline points="16 6 12 2 8 6"></polyline>
@@ -203,22 +209,22 @@
                 </div>
             </div> -->
 
-            <!-- <div class="post-card"> -->
-                <!-- <div class="post-header">
-                    <div class="post-avatar">SA</div>
-                    <div class="post-info">
-                        <h4 class="post-author">Sarah Anderson</h4>
-                        <p class="post-meta">5 hours ago</p>
-                    </div>
-                    <button class="post-menu">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="1"></circle>
-                            <circle cx="12" cy="5" r="1"></circle>
-                            <circle cx="12" cy="19" r="1"></circle>
-                        </svg>
-                    </button>
-                </div> -->
-                <!-- <h3 class="post-title">Breathing techniques that changed my anxiety</h3>
+        <div class="post-card"> -->
+            <div class="post-header">
+                <div class="post-avatar">SA</div>
+                <div class="post-info">
+                    <h4 class="post-author">Sarah Anderson</h4>
+                    <p class="post-meta">5 hours ago</p>
+                </div>
+                <button class="post-menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="12" cy="5" r="1"></circle>
+                        <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                </button>
+            </div>
+            <!-- <h3 class="post-title">Breathing techniques that changed my anxiety</h3>
                 <p class="post-content">After practicing the 4-7-8 breathing technique for two weeks, I've noticed significant improvements in managing my anxiety. Here's how I incorporate it into my daily routine...</p>
                 <div class="post-footer">
                     <button class="post-action">
@@ -234,7 +240,7 @@
                         <span>23 comments</span>
                     </button>
                     <button class="post-action"> -->
-                        <!-- <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <!-- <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
                             <polyline points="16 6 12 2 8 6"></polyline>
                             <line x1="12" y1="2" x2="12" y2="15"></line>
@@ -271,7 +277,7 @@
                     <button class="post-action">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path> -->
-                        <!-- </svg>
+            <!-- </svg>
                         <span>34 comments</span>
                     </button>
                     <button class="post-action">
@@ -285,8 +291,9 @@
                 </div>
             </div>
         </div> -->
-        <div id="membersList" class="hidden"></div>
+            <div id="membersList" class="hidden"></div>
     </main>
     <script type="module" src="./js/circle-detail.js"></script>
 </body>
+
 </html>
