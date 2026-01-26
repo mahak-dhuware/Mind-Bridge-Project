@@ -5,8 +5,10 @@ import { onAuthStateChanged } from
 import {
   doc,
   getDoc,
+  getDocs,
   updateDoc,
    deleteField,
+   deleteDoc,
    addDoc,
   collection,
   serverTimestamp,
@@ -34,14 +36,14 @@ const submitPost = document.querySelector("#submitPost");
 const postTitle = document.querySelector("#postTitle");
 const postAuthor = document.querySelector("#postAuthor")
 const adminPanel = document.querySelector("#adminPanel")
-
+const post = document.querySelector("#post");
 createPostBtn.addEventListener("click", () => {
-   postList.classList.remove('hidden');
+   post.classList.remove('hidden');
    adminPanel.classList.add('hidden');
 })
 submitPost.addEventListener("click", () => {
-  postList.classList.add('hidden');
-  alert ("Post Created");
+  post.classList.add('hidden');
+  
 })
 members.addEventListener("click", () => {
   posts.classList.remove('active');
@@ -60,18 +62,7 @@ const params = new URLSearchParams(window.location.search);
 const circleId = params.get("id");
 let currentUser = null;
 
-// onAuthStateChanged(auth, async (user) => {
-//   if (!user) {
-//     window.location.href = "login.html";
-//     return;
-//   }
 
-//   currentUser = user;
-//   loadCircleDetails();
-
-//   loadPosts();
-//    await loadMembers(circleId);  
-// });
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = "login.html";
@@ -123,40 +114,7 @@ document.getElementById("circleAvatar").innerText = getInitials(circle.title);
 
 let circleData = null;
 
-// onAuthStateChanged(auth, async (user) => {
-//   if (!user) {
-//     window.location.href = "login.html";
-//     return;
-//   }
 
-//   currentUser = user;
-//   await loadCircle();
-// });
-// async function loadCircle() {
-//   const ref = doc(fs, "circles", circleId);
-//   const snap = await getDoc(ref);
-
-//   if (!snap.exists()) return;
-
-//   circleData = snap.data();
-
-//   // Text
-//   circleTitle.innerText = circleData.title;
-//   circleDescription.innerText = circleData.description;
-
-//   // Avatar initials
-//   circleAvatar.innerText = getInitials(circleData.title);
-
-//   // ADMIN CHECK
-//   if (circleData.members?.[currentUser.uid] === "admin") {
-//     adminPanel.classList.remove("hidden");
-
-//     editTitle.value = circleData.title;
-//     editDescription.value = circleData.description;
-
-//     loadJoinRequests();
-//   }
-// }
 async function loadCircle() {
   const ref = doc(fs, "circles", circleId);
   const snap = await getDoc(ref);
@@ -269,12 +227,13 @@ if (role === "admin") {
 //create post
 
 submitPost.addEventListener("click", async () => {
-      postList.classList.add('hidden');
+      post.classList.add('hidden');
       adminPanel.classList.remove('hidden');
+
   const title = postTitle.value.trim();
   const body = postBody.value.trim();
-  postAuthor.innerText = ``;
-  if (!title || !body) return alert("Fill all fields");
+  // postAuthor.innerText = ``;
+  if (!title || !body) {alert("Fill all fields")};
 
   await addDoc(collection(fs, "posts"), {
     circleId,
@@ -283,7 +242,7 @@ submitPost.addEventListener("click", async () => {
     createdBy: currentUser.uid,
     createdAt: serverTimestamp()
   });
- 
+  alert("Posted ✅")
   postTitle.value = "";
   postBody.value = "";
 });
@@ -302,22 +261,32 @@ function loadPosts() {
     snapshot.forEach(docSnap => {
       const p = docSnap.data();
       postList.innerHTML += renderPost(docSnap.id, p);
-      loadComments(docSnap.id);
+      // loadComments(docSnap.id);
 
     });
   });
 }
 function renderPost(postId, p) {
+   const isOwner = p.createdBy === currentUser.uid;
+
   return `
-    <div class="post-card">
-       
-            
+    <div class="post-card" id="postEntry">
                 <div class="post-header">
                     <div class="post-avatar"></div>
                     <div class="post-info">
                         <h4 class="post-author"></h4>
                         <p class="post-meta"></p>
+                          ${
+        isOwner
+          ? `<button 
+                class="btn-small btn-destructive"
+                onclick="deletePost('${postId}')">
+                Delete Post
+             </button>`
+          : ""
+      }
                     </div>
+                    
                     <button class="post-menu">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="1"></circle>
@@ -328,55 +297,47 @@ function renderPost(postId, p) {
                 </div>
                 <h3 class="post-title" id=>${p.title}</h3>
                 <p class="post-content" id=>${p.body}</p>
-                <div class="post-footer">
-                     <button class="post-action">
+               
+                     <button class="post-action" class="comment-btn"
+        onclick="toggleComments('${postId}')">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                         </svg>
-                        
+                       <span>Comments</span>
                     </button>
+   <div class="comments-section hidden "
+           id="comments-box-${postId}">
+        <div class="card-header">
+                   <h4>Comments</h4>
+                   <button class="btn-small btn-destructive" id="closecommentbox" type="button" onclick="closecommentsection('#comments-box-${postId}')") >
+                   Close</button>
+                   </div>
+        <div class="comments-list post-card"
+             id="comments-${postId}"></div>
+             
 
-      <div class="comments" id="comments-${postId}"></div>
+        <div class=" hidden" id="makeacomment">
+          <input type="text" class=" form-input comment-input"
+                 id="comment-input-${postId}"
+                 placeholder="Write a comment..." />
+                 
+          <button class="btn-primary" id="comment-btn" onclick="addComment('${postId}')">
+            Post
+          </button>
+          
+      </div>
+    
+  ` ;
 
-      <input id="comment-${postId}" placeholder="Write a comment">
-      <button onclick="addComment('${postId}')">Comment</button>
-    </div>
-  `;
 }
-//add comment
-// window.Comment = async (postId) => {
-//   const input = document.getElementById(`comment-${postId}`);
-//   const text = input.value.trim();
-//   if (!text) return;
 
-//   await addDoc(collection(fs, "comments"), {
-//     postId,
-//     body: text,
-//     createdBy: currentUser.uid,
-//     createdAt: serverTimestamp()
-//   });
+window.closecommentsection = (selector) => {
+  const commentsSection = document.querySelector(selector);
+  if (!commentsSection) return;
 
-//   input.value = "";
-// };
-//load comment
-// function loadComments(postId) {
-//   const q = query(
-//     collection(fs, "comments"),
-//     where("postId", "==", postId),
-//     orderBy("createdAt", "asc")
-//   );
+  commentsSection.classList.add("hidden");
+};
 
-//   onSnapshot(q, (snapshot) => {
-//     const box = document.getElementById(`comments-${postId}`);
-//     if (!box) return;
-
-//     box.innerHTML = "";
-//     snapshot.forEach(docSnap => {
-//       const c = docSnap.data();
-//       box.innerHTML += `<p>💬 ${c.body}</p>`;
-//     });
-//   });
-// }
 //remove member
 
 
@@ -400,10 +361,10 @@ async function loadMembers(circleId) {
 
         ${
           isAdmin && role === "member"
-            ? `<button class="btn-destructive btn-small" id="removemember"
+            ? `<div class="removemem"><button class="btn-destructive btn-small" id="removemember"
                 onclick="removeMember('${circleId}', '${uid}')">
                 Remove
-              </button>`
+              </button> </div>`
             : ""
         }
       </div>
@@ -444,3 +405,138 @@ window.removeMember = async (circleId, memberUid) => {
 //   createdAt: serverTimestamp(),
 //   read: false
 // });
+
+//togglee comment
+window.toggleComments = (postId) => {
+  const inputComment = document.getElementById(`makeacomment`)
+  const box = document.getElementById(`comments-box-${postId}`);
+  box.classList.toggle("hidden");
+  inputComment.classList.toggle("hidden")
+  loadComments(postId);
+};
+//add comment
+window.addComment = async (postId) => {
+  const input = document.getElementById(`comment-input-${postId}`);
+  const text = input.value.trim();
+
+  if (!text) return;
+
+  await addDoc(collection(fs, "comments"), {
+    postId,
+    body: text,
+    createdBy: currentUser.uid,
+    createdAt: serverTimestamp()
+  });
+
+  input.value = "";
+};
+//load comments
+
+function loadComments(postId) {
+  const q = query(
+    collection(fs, "comments"),
+    where("postId", "==", postId),
+    orderBy("createdAt", "asc")
+  );
+
+  onSnapshot(q, (snapshot) => {
+    const box = document.getElementById(`comments-${postId}`);
+    if (!box) return;
+
+    box.innerHTML = "";
+
+//     snapshot.forEach(docSnap => {
+//       const c = docSnap.data();
+//       box.innerHTML += `
+//         <div class="comment">
+//           💬 ${c.body}
+//           </div>
+//           <br>
+//           <button class="delete-comment btn-small btn-destructive">
+//                Delete
+//              </button>
+//           <br>
+        
+//         <br>
+//         <hr>
+//         <br>
+//       `;
+//     });
+//   });
+// }
+
+snapshot.forEach(docSnap => {
+  const c = docSnap.data();
+  const commentId = docSnap.id;
+
+  box.innerHTML += renderComment(commentId, c);
+});
+
+
+function renderComment(commentId, c) {
+  const isOwner = c.createdBy === currentUser.uid;
+
+  return `
+    <div class="comment">
+          💬 ${c.body}
+          </div>
+          <br>
+
+      ${
+        isOwner
+          ? `<button 
+                class="delete-comment btn-small btn-destructive"
+                onclick="deleteComment('${commentId}')">
+                Delete
+             </button>
+                `
+          : ""
+          
+      }
+ 
+        <br>   
+      <hr>
+      <br>
+    </div>
+  `;
+}
+  })}
+
+window.deleteComment = async (commentId) => {
+  if (!confirm("Delete this comment?")) return;
+
+  try {
+    await deleteDoc(doc(fs, "comments", commentId));
+    console.log("Comment deleted");
+  } catch (err) {
+    console.error(err);
+    alert("Failed to delete comment");
+  }
+};
+
+
+
+window.deletePost = async (postId) => {
+  if (!confirm("Delete this post? This will also remove its comments.")) return;
+
+  try {
+    // 1️⃣ Delete all comments of this post
+    const q = query(
+      collection(fs, "comments"),
+      where("postId", "==", postId)
+    );
+
+    const snapshot = await getDocs(q);
+    snapshot.forEach(docSnap => {
+      deleteDoc(doc(fs, "comments", docSnap.id));
+    });
+
+    // 2️⃣ Delete the post
+    await deleteDoc(doc(fs, "posts", postId));
+
+    console.log("Post deleted successfully");
+  } catch (err) {
+    console.error(err);
+    alert("Failed to delete post");
+  }
+};

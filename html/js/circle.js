@@ -408,6 +408,7 @@ if (role) {
 async function loadRecommendedCircles() {
   const snapshot = await getDocs(collection(fs, "circles"));
   const recList = document.getElementById("recommendedCircles");
+  
   recList.innerHTML = "";
 
   snapshot.forEach(docSnap => {

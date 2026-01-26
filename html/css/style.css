@@ -2029,6 +2029,11 @@ input:checked + .toggle-slider:before {
 #private {
     margin-left: 100px;
 }
+
+
+#SharedtoCircles {
+    margin-left: 100px;
+}
 #closecreatecircle {
     margin-left: 25px;
 }
@@ -2057,6 +2062,74 @@ input:checked + .toggle-slider:before {
 /* #request-id {
     margin-top: 15px;
 } */
- #removemember {
+
+ /* #removemember {
+    margin-right: 0;
     margin-left: 500px;
+
+ } */
+
+ #postEntry {
+    margin-bottom: 30px;
  }
+
+/* 
+.removemem{
+    margin-right: 0;
+    margin-left: 255px;
+    
+} */
+
+.comments-section{
+    margin-top: 15px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 10px 10px 10px 10px;
+    background-color: var(--color-gray-50);
+}
+#makeacomment{
+    margin-top: 15px;
+}
+.comment-input{
+    min-width: 500px;
+}
+/* #comment-btn{
+    margin-left: 20px;
+} */
+/* #closecommentbox{
+    margin-left: 900px;
+    
+} */
+.comment{
+    display: flex;
+    
+}
+.commenthead{
+    display: flex;
+}
+#journalTitle{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-width: 800px;
+}
+#journalBody{
+     margin-top: 10px;
+    margin-bottom: 10px;
+    min-width: 800px;
+}
+#circleSelectBox{
+    margin-top: 10px;
+    margin-bottom: 10px;
+   
+}
+#sharedCircle{
+    margin-left: 10px;
+    min-width: 250px;
+}
+.stat-card{
+    width: 300px;
+   
+}
+.delete-comment{
+    margin-bottom: 10px;
+}
