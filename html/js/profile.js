@@ -68,6 +68,7 @@ const changeAvatarBtn = document.querySelector("#changeAvatarBtn");
 
 const removeAvatarBtn = document.getElementById("removeAvatarBtn");
 const deleteBtn = document.querySelector("#deleteAccountBtn");
+const closepasswordbox = document.querySelector("#closepasswordbox");
 
 const DEFAULT_AVATAR = "https://cdn.vectorstock.com/i/500p/78/35/single-gray-circle-with-a-simple-human-silhouette-vector-53897835.jpg";
 
@@ -201,11 +202,11 @@ removeAvatarBtn.addEventListener("click", async () => {
     // 🔄 Update UI
     avatarImg.src = DEFAULT_AVATAR;
 
-    alert("Avatar removed successfully ✅");
+    alert("Profile picture removed successfully ✅");
 
   } catch (error) {
     console.error(error);
-    alert("Failed to remove avatar");
+    alert("Failed to remove profile picture");
   }
 });
 // 🔹 Load profile
@@ -339,7 +340,8 @@ const newPassword = document.querySelector("#newPassword");
 
 // 🔹 Show input box
 changeBtn.addEventListener("click", () => {
-  passwordBox.style.display = "block";
+  // passwordBox.style.display = "block";
+  passwordBox.classList.remove('hidden');
 });
 
 // 🔹 Update password
@@ -387,3 +389,8 @@ save.addEventListener("click", async () => {
     }
   }
 });
+
+closepasswordbox.addEventListener("click", () => {
+  passwordBox.classList.add('hidden');
+  
+})
